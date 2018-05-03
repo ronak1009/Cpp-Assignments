@@ -27,6 +27,7 @@ class myString{
 		void print();
 		myString concatenate(myString str);
 		myString subString(int start, int end);
+		int indexOf(char c);
 
 		//operator overloads
 };
