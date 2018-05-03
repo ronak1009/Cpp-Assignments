@@ -24,14 +24,21 @@ int main() {
 	myString newStr = str1.concatenate(str2);
 	//copy constructor is called as you are passing by value str2
 	newStr.print();
+	
 	myString subStr = newStr.subString(1, 3);
 	subStr.print();
+	
 	int index = newStr.indexOf('S');
 	printf("index of R = %d\n", index);
+	
 	myString operStr = str1 + str2;
 	operStr.print();
+	
 	operStr.replace('S', 'G');
 	operStr.print();
 
+	operStr = newStr;
+	operStr.print();
+	
 	//3 destructors shall be called, str1, str2, newStr
 }

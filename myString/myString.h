@@ -31,5 +31,6 @@ class myString{
 		void replace(char c, char d);
 
 		//operator overloads
-		myString operator + (myString str);
+		myString operator + (myString &str);
+		myString operator = (myString &str);
 };

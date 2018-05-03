@@ -100,8 +100,16 @@ void myString::replace(char c, char d) {
 	}
 };
 
+myString myString::operator = (myString &str) {
+	if (this != &str) {
+		string = str.string;
+		size = str.size;
+	}
+	return *this;
+};
+
 //operator overload
-myString myString::operator+ (myString str) {
+myString myString::operator+ (myString &str) {
 	myString concatStr = myString(string).concatenate(str);
 	return concatStr;
 };
