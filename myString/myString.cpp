@@ -33,9 +33,10 @@ myString myString::concatenate(myString str) {
 	//dynamic memory allocation
 	char *newString = new char[size + str.size + 1];
 	int count = 0;
-	while (*string) {
-		*newString = *string;
-		string++;
+	char *ptr = string;
+	while (*ptr) {
+		*newString = *ptr;
+		ptr++;
 		newString++;
 	}
 	while (*str.string) {
@@ -43,8 +44,7 @@ myString myString::concatenate(myString str) {
 		str.string++;
 		newString++;
 	}
-	//resetting the pointer on string
-	(string - size);
+	
 	*newString = NULL;
 	//move pointer back to the start of char array
 	myString newStr(newString - size - str.size);
@@ -88,6 +88,25 @@ int myString::indexOf(char c) {
 	//returning -1 means that the char is not present
 	return index > size-1 ? -1 : index;
 };
+
+void myString::replace(char c, char d) {
+	char *ptr = string;
+	while (*ptr) {
+		if (*ptr == c) {
+			*ptr = d;
+			break;
+		}
+		ptr++;
+	}
+};
+
+//operator overload
+myString myString::operator+ (myString str) {
+	myString concatStr = myString(string).concatenate(str);
+	return concatStr;
+};
+
+
 //destructor
 myString::~myString() {
 	//cout << "destructor" << endl;

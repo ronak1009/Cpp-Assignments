@@ -28,6 +28,10 @@ int main() {
 	subStr.print();
 	int index = newStr.indexOf('S');
 	printf("index of R = %d\n", index);
+	myString operStr = str1 + str2;
+	operStr.print();
+	operStr.replace('S', 'G');
+	operStr.print();
 
 	//3 destructors shall be called, str1, str2, newStr
 }

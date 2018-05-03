@@ -28,6 +28,8 @@ class myString{
 		myString concatenate(myString str);
 		myString subString(int start, int end);
 		int indexOf(char c);
+		void replace(char c, char d);
 
 		//operator overloads
+		myString operator + (myString str);
 };
