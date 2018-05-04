@@ -25,7 +25,7 @@ class myString{
 		//methods
 		int getsize();
 		void print();
-		myString concatenate(myString str);
+		myString concatenate(myString &str);
 		myString subString(int start, int end);
 		int indexOf(char c);
 		void replace(char c, char d);
@@ -33,4 +33,6 @@ class myString{
 		//operator overloads
 		myString operator + (myString &str);
 		myString operator = (myString &str);
+		int operator == (myString &str);
+		operator char* const ();
 };

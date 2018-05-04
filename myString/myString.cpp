@@ -1,14 +1,18 @@
 #include "myString.h"
 #include <cstdio>
 
+//argument based constructor
 myString::myString(char str[]) {
 	string = str;
 	size = getsize();
+	cout << "arg constructor" << endl;
 }
 
+//copy constructor
 myString::myString(myString &str) {
 	string = str.string;
 	size = str.size;
+	cout << "Copy constructor" << endl;
 }
 
 int myString::getsize() {
@@ -29,7 +33,7 @@ void myString::print() {
 	printf("\n");
 }
 
-myString myString::concatenate(myString str) {
+myString myString::concatenate(myString &str) {
 	//dynamic memory allocation
 	char *newString = new char[size + str.size + 1];
 	int count = 0;
@@ -39,9 +43,10 @@ myString myString::concatenate(myString str) {
 		ptr++;
 		newString++;
 	}
-	while (*str.string) {
-		*newString = *str.string;
-		str.string++;
+	ptr = str.string;
+	while (*ptr) {
+		*newString = *ptr;
+		ptr++;
 		newString++;
 	}
 	
@@ -77,7 +82,7 @@ myString myString::subString(int start, int end) {
 int myString::indexOf(char c) {
 	int index = 0;
 	if (*string == '\0' || *string == NULL)
-		string-size;
+		string = string-size;
 	char *ptr = string;
 	while (*ptr) {
 		if (*ptr == c) 
@@ -101,6 +106,7 @@ void myString::replace(char c, char d) {
 };
 
 myString myString::operator = (myString &str) {
+	cout << "operator overload" << endl;
 	if (this != &str) {
 		string = str.string;
 		size = str.size;
@@ -110,14 +116,42 @@ myString myString::operator = (myString &str) {
 
 //operator overload
 myString myString::operator+ (myString &str) {
-	myString concatStr = myString(string).concatenate(str);
+	cout << "+ operator overload inside method" << endl;
+	myString s = myString(this->string);
+	s.print();
+	s.concatenate(str);
+	myString s1 = s.concatenate(str);
+	myString concatStr = s1;
 	return concatStr;
 };
 
+int myString::operator == (myString &str) {	
+	cout << "== equals operator overloading" << endl;
+	//if sizes of the string is not equal, they are not equal
+	if (str.size != size)
+		return false;
+
+	char *p = string;
+	char *p2 = str.string;
+	int expr = 0;
+	
+	while (*p) {
+		if (*p != *p2) {
+			expr += 1;
+			break;
+		}
+		p++;
+		p2++;
+	}
+	return expr == 0 ? true : false;
+};
+
+myString::operator char* const () {
+	return string;
+};
 
 //destructor
 myString::~myString() {
-	//cout << "destructor" << endl;
-	//delete[] string;
-	//delete &size;
+	cout << "destructor" << endl;
+	//delete string;
 }

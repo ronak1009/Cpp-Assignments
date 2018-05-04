@@ -11,6 +11,8 @@ using namespace std;
 This is 'cause the new temp object's scope is local to the function.
 
 2. << operator overload, for working it with cout
+
+3. destructor implementation as using new operator to create dynamic arr pf char
 */
 int main() {
 	myString str1("Ronak");
@@ -23,22 +25,31 @@ int main() {
 	//appending 2 str
 	myString newStr = str1.concatenate(str2);
 	//copy constructor is called as you are passing by value str2
-	newStr.print();
+	//newStr.print();
 	
 	myString subStr = newStr.subString(1, 3);
-	subStr.print();
+	//subStr.print();
 	
 	int index = newStr.indexOf('S');
-	printf("index of R = %d\n", index);
+	//printf("index of R = %d\n", index);
 	
+	cout << "+ operator overload" << endl;
 	myString operStr = str1 + str2;
-	operStr.print();
+	//operStr.print();
 	
 	operStr.replace('S', 'G');
 	operStr.print();
-
+	
 	operStr = newStr;
 	operStr.print();
-	
+	//0 false, 1 true
+	if (str1 == myString("Ronaz")) {
+		printf("Strings are equals");
+	}
+	else {
+		printf("Different strings present");
+	}
+	char *name = str1;
+	printf("%s", name);
 	//3 destructors shall be called, str1, str2, newStr
 }
